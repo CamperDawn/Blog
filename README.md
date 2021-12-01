@@ -1,5 +1,5 @@
 # Blog
-Blog proyect for the INFORMATORIO
+Blog project for the INFORMATORIO
 
 Installation step
 -
