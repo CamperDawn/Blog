@@ -1,7 +1,7 @@
 # Blog
 Blog project for the INFORMATORIO
 
-Installation step
+Installation steps
 -
 
 powershell terminal
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 cd Server/
 touch .env
 ```
-To close the virtual environment do `deactivate`
+To close the virtual environment, do `deactivate`
 
 Create a database schema called `'blog'`  
 .env file configuration:
@@ -43,7 +43,7 @@ PASSWORD_DB=[YOUR DB PASSWORD]
 Migrations
 -
 
-In the Proyect directory
+In the Project directory
 ```
 cd Server
 python manage.py makemigrations
