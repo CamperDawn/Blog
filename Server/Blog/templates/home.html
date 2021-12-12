@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "home.css" %}>
+{% endblock css %}
+
+{% block body %}
+    <main class="main-container">
+        <section class="category-container">
+            <h2 class="title-category">CATEGORIAS</h2>
+            <main class="main-category">
+                {% for i in range %}
+                    <a href="/search/?search_input=&category={{i}}&type=3&order=1" class="category-item">
+                        <img class="img-item i{{i}}"></img>
+                    </a>
+                {% endfor %}
+            </main>
+        </section>
+    </main>
+{% endblock body %}

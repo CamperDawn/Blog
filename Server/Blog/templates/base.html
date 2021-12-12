@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/media/resource/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href={% static "base.css" %}>
+    {% block css %}{% endblock css %}
+    <title>MDS</title>
+</head>
+<body>
+    <header class="header-container">
+        <nav class="nav-container">
+            <section class="container-logo">
+                <a href="/" class="link-logo">
+                    <img class="img-logo" src="/media/resource/img-logo.png">
+                </a>
+            </section>
+            <form class="search" action="/search/" method="GET">
+                <input class="input-search" type="search" name="search_input" placeholder="Buscar Titulos" value={{request.GET.search_input}}>
+                <input id='ca' type="hidden" name="category" value={{request.GET.category|default:"18"}}>
+                <input id='ty' type="hidden" name="type" value={{request.GET.type|default:"3"}}>
+                <input id='orr' type="hidden" name="order" value={{request.GET.order|default:"1"}}>
+                <button class="btn-search" type="submit"><img src="/media/resource/search-icon.svg"></button>
+            </form>
+            <ul class="session-container">
+                {% if not request.user.is_authenticated %}
+                    <li><a href="/auth/login/">Login</a></li>
+                    <li><a href="/auth/register/">Register</a></li>
+                {% else %}
+                    <li><a href="/profile/{{request.user}}/">{{request.user}}</a></li>
+                    <li><a href="/auth/login/">Log Out</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    {% block body %}{% endblock body %}
+    <footer class="foot-container">
+        esto es el pie de pagina
+    </footer>
+</body>
+</html>
