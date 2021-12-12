@@ -29,8 +29,7 @@ cd Server/
 touch .env
 ```
 To close the virtual environment, do `deactivate`
-
-Create a database schema called `'blog'`  
+ 
 .env file configuration:
 ```
 DEBUG=True
@@ -42,6 +41,7 @@ PASSWORD_DB=[YOUR DB PASSWORD]
 
 Migrations
 -
+Create a database schema called `'blog'`
 
 In the Project directory
 ```
