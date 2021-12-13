@@ -194,10 +194,7 @@ def Profile(request,user_name):
             prev = int(prev)
             calc_posts = (prev-1)*10
             ctxLocal['page'] = prev
-    try:
-        #----------------------------------------
-        # tratar verificacion del login y del usuario del perfil
-        #----------------------------------------    
+    try:  
         user = User.objects.get(username=user_name)
     except Exception as ex:
         return redirect(f'/profile/{request.user}/')
@@ -214,7 +211,32 @@ def Profile(request,user_name):
 
 @login_required(login_url='/auth/login/',redirect_field_name='next')
 def CreatePost(request,user_name):
-    pass
+    ctxLocal = {}
+    ctxLocal['categories'] = ctxGlobal['categories']
+    ctxLocal['types'] = [
+        {'value':'1','type':'noticias'},
+        {'value':'2','type':'posts'},
+    ]
+    
+    if request.user.is_authenticated:
+        if user_name != request.user:
+            return redirect(to=f'/profile/{request.user}/create/')
+        ctxLocal['image_user'] = imageUser(request.user)
+    
+    if request.method == 'POST':
+        title = request.POST['title']
+        desc = request.POST['desc']
+        image = request.FILES.get('image',"")
+        category = request.POST['category']
+        type = request.POST['type']
+        user = User.objects.get(username=request.user)
+        post = models.Post.objects.create(title=title,description=desc,img=image,category=category,post_type=type,user=user)
+        if post != None:
+            return redirect(to=f'/profile/{request.user}/')
+        else:
+            ctxLocal['errorPost'] = True
+        
+    return render(request,'createpost.html',ctxLocal)
 
 @login_required(login_url='/auth/login/',redirect_field_name='next')
 def Config(request,user_name):
