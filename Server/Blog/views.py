@@ -179,7 +179,7 @@ def Profile(request,user_name):
     calc_posts = 0
     
     if request.user.is_authenticated:
-        if user_name == request.user:
+        if user_name == request.user.username:
             ctxLocal['editPermmision'] = True
         ctxLocal['image_user'] = imageUser(request.user)
     
@@ -219,7 +219,7 @@ def CreatePost(request,user_name):
     ]
     
     if request.user.is_authenticated:
-        if user_name != request.user:
+        if user_name != request.user.username:
             return redirect(to=f'/profile/{request.user}/create/')
         ctxLocal['image_user'] = imageUser(request.user)
     
@@ -243,7 +243,7 @@ def Config(request,user_name):
     ctxLocal = {}
     
     if request.user.is_authenticated:
-        if user_name != request.user:
+        if user_name != request.user.username:
             return redirect(to=f'/profile/{request.user}/create/')
         ctxLocal['image_user'] = imageUser(request.user)
     
