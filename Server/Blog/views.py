@@ -29,9 +29,12 @@ ctxGlobal['categories'] = [
 ]
 
 def imageUser(req_user):
-    user = User.objects.get(username=req_user)
-    profile_user = models.Profile.objects.get(usuario=user)
-    return profile_user.img
+    try:
+        user = User.objects.get(username=req_user)
+        profile_user = models.Profile.objects.get(usuario=user)
+        return profile_user.img
+    except:
+        return
 
 def Home(request):
     ctxLocal = {}
