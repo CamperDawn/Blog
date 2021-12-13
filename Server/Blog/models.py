@@ -10,7 +10,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     bio= models.CharField(max_length=255, blank=True)
-    img= models.ImageField(update_to="images/", null=True)
+    img= models.ImageField(upload_to="images/", null=True)
 
     def __str__(self):
         return self.usuario.username
