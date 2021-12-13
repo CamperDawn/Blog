@@ -29,6 +29,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.IntegerField(default=18, null=False)
     title = models.CharField(max_length=200)
+    img= models.ImageField(upload_to="images/", null=True)
     description = models.TextField()
     post_date = models.DateTimeField(default=timezone.now, null=True)
     #likes_number = models.IntegerField(default=0)
