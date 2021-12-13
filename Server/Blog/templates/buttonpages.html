@@ -1,0 +1,21 @@
+<section class="container-pages">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if page|add:'-1' == 0 %}
+            <div class="inactive"></div>
+        {% else %}
+            <input type="hidden" name="prev" value="{{page|add:'-1'}}">
+            <button class="btn" type="submit"><img src="/media/resource/previous.png"></button>
+        {% endif %}
+    </form>
+    <span class="page-current">{{page}}</span>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% if not more %}
+            <div class="inactive"></div>
+        {% else %}
+            <input type="hidden" name="next" value="{{page|add:'1'}}">
+            <button class="btn" type="submit"><img src="/media/resource/next.png"></button>
+        {% endif %}
+    </form>
+</section>
