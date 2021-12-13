@@ -154,7 +154,22 @@ def LoginRegister(request,path):
     return render(request,'loginregister.html',ctxLocal)
 
 def Detais(request,id_post):
-    pass
+    ctxLocal = {}
+    ctxLocal['commentPermission'] = False
+    
+    if request.user.is_authenticated:
+        ctxLocal['image_user'] = imageUser(request.user)
+        ctxLocal['commentPermission'] = True
+    
+    try:
+        ctxLocal['post'] = models.Post.objects.get(id=id_post)
+    except Exception as ex:
+        return redirect('home_page')
+    else:
+        if ctxLocal['post'].comment_numbers != 0:
+            ctxLocal['list_comments'] = models.Comment.objects.filter(post=ctxLocal['post']).order_by('-comment_date')
+    
+    return render(request,'details.html',ctxLocal)
 
 @login_required(login_url='/auth/login/',redirect_field_name='next')
 def Profile(request,user_name):

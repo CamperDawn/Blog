@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "details.css" %}>
+{% endblock css %}
+
+{% block body %}
+    <main>
+        {{post.user}} <br>
+        {{post.title}} <br>
+        {{post.desc}} <br>
+        {% if post.category == 8 %}
+        nombre de esta categoria
+        {% endif %}
+        {{post.category}} <br>
+        <img src="/media/{{post.image}}"> <br>
+    </main>
+{% endblock body %}
