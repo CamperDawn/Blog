@@ -1,5 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from . import models
+
+def imageUser(req_user):
+    user = User.objects.get(username=req_user)
+    profile_user = models.Profile.objects.get(usuario=user)
+    return profile_user.img
 
 def Home(request):
     ctxLocal = {}
@@ -7,10 +14,7 @@ def Home(request):
     # obtener los destacados para el carusel
     #----------------------------------------
     if request.user.is_authenticated:
-        #----------------------------------------
-        # obtener la imagen del perfil
-        #----------------------------------------
-        ctxLocal['user'] = request.user
+        ctxLocal['image_user'] = imageUser(request.user)
     ctxLocal['range'] = range(1,19)
     return render(request,'home.html',ctxLocal)
 

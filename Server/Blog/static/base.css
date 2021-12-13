@@ -33,7 +33,7 @@ body::-webkit-scrollbar-thumb:hover {
     display: grid;
     grid-template-columns: 15% 1fr 15%;
     gap: 1vw;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
 }
@@ -41,9 +41,9 @@ body::-webkit-scrollbar-thumb:hover {
     width: 85px;
 }
 .search {
-    margin: auto;
     display: flex;
     gap: 0.1vw;
+    justify-self: center;
     background-color: #aaa;
     border-radius: 0.6rem;
     height: 30px;
@@ -83,16 +83,53 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .session-container {
     display: flex;
+    width: 60px;
+    height: 60px;
     gap: 1vw;
-    margin: auto;
-    justify-content: flex-end;
+    justify-self: flex-end;
+    position: relative;
 }
-.carusel-container {
-    background-color: #444;
-    width: 70vw;
-    height: 50vh;
-    margin: auto;
+
+.access {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    background-color: #fff;
+    overflow: hidden;
+    cursor: pointer;
 }
-.d-block {
-    width: 35%;
+.access>img {
+    width: 100%;
+}
+.menu {
+    position: absolute;
+    left: calc(-100% + .8rem);
+    top: calc(100% + .8rem);
+    background-color: white;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 #333;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.menu::before {
+    content:"\A";
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    transform: rotate(90deg);
+    border-color: transparent #fff transparent transparent;
+    position: absolute;
+    top: -15px;
+    left: 67%;
 }

@@ -25,20 +25,30 @@
                 <input id='orr' type="hidden" name="order" value={{request.GET.order|default:"1"}}>
                 <button class="btn-search" type="submit"><img src="/media/resource/search-icon.svg"></button>
             </form>
-            <ul class="session-container">
+            <section class="session-container">
                 {% if not request.user.is_authenticated %}
-                    <li><a href="/auth/login/">Login</a></li>
-                    <li><a href="/auth/register/">Register</a></li>
+                    <a href="/auth/login/">Login</a>
+                    <a href="/auth/register/">Register</a>
                 {% else %}
-                    <li><a href="/profile/{{request.user}}/">{{request.user}}</a></li>
-                    <li><a href="/auth/login/">Log Out</a></li>
+                    <button class="access"><img src="{{image_user}}"></button>
+                    <div class="menu">
+                        <a href="/profile/{{request.user}}/">{{request.user}}</a>
+                        <a href="/auth/login/">Log Out</a>
+                    </div>
                 {% endif %}
-            </ul>
+            </section>
         </nav>
     </header>
     {% block body %}{% endblock body %}
     <footer class="foot-container">
         esto es el pie de pagina
     </footer>
+    <script>
+        let btnProfile = document.querySelector(".access")
+        let menuProfile = document.querySelector(".menu")
+        btnProfile.addEventListener("click", e =>{
+            menuProfile.classList.toggle("active")
+        })
+    </script>
 </body>
 </html>
