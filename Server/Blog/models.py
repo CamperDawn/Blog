@@ -43,3 +43,15 @@ class Post(models.Model):
     def __str__(self):
         return self.title
         
+class Comment(models.Model):
+    post=models.ForeignKey(Post, related_name='comment', on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='comment')
+    content = models.TextField()
+    comment_date = models.DateTimeField(auto_now_add=True)
+    #likes_number = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse("post_list")
+
+    def __str__(self):
+        return self.content
