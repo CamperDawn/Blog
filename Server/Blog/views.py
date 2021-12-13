@@ -171,9 +171,46 @@ def Detais(request,id_post):
     
     return render(request,'details.html',ctxLocal)
 
-@login_required(login_url='/auth/login/',redirect_field_name='next')
 def Profile(request,user_name):
-    pass
+    ctxLocal = {}
+    ctxLocal['editPermmision'] = False
+    ctxLocal['page'] = 1
+    ctxLocal['more'] = False
+    calc_posts = 0
+    
+    if request.user.is_authenticated:
+        if user_name == request.user:
+            ctxLocal['editPermmision'] = True
+        ctxLocal['image_user'] = imageUser(request.user)
+    
+    if request.method == 'POST':
+        prev = request.POST.get('prev',None)
+        next = request.POST.get('next',None)
+        if prev == None:
+            next = int(next)
+            calc_posts = (next-1)*10
+            ctxLocal['page'] = next
+        elif next == None:
+            prev = int(prev)
+            calc_posts = (prev-1)*10
+            ctxLocal['page'] = prev
+    try:
+        #----------------------------------------
+        # tratar verificacion del login y del usuario del perfil
+        #----------------------------------------    
+        user = User.objects.get(username=user_name)
+    except Exception as ex:
+        return redirect(f'/profile/{request.user}/')
+    else:
+        ctxLocal['list_post'] = models.Post.objects.filter(user=user)
+        
+        more_posts = ctxLocal['list_post'][calc_posts:calc_posts+11]
+        ctxLocal['list_post'] = ctxLocal['list_post'][calc_posts:calc_posts+10]
+        
+        if len(more_posts)>10:
+            ctxLocal['more'] = True
+            
+    return render(request,'profile.html',ctxLocal)
 
 @login_required(login_url='/auth/login/',redirect_field_name='next')
 def CreatePost(request,user_name):

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "profile.css" %}>
+    <link rel="stylesheet" href={% static "buttonpages.css" %}>
+{% endblock css %}
+
+{% block body %}
+    <main>
+        <section>
+            <a href="create/">CREAR POST</a>
+            <a href="config/">CONFIG</a>
+        </section>
+        <section>
+            {% if list_post %}
+                {% for el in list_post %}
+                    <a href="/details/{{el.id}}">
+                        <h3>{{el.title}}</h3>
+                        <p>{{el.desc}}</p>
+                        <span>{{elem.date}}</span>
+                        <img href="{{el.image}}" >
+                    </a>
+                {% endfor %}
+            {% else %}
+                <span>SIN POSTS TODAVIA</span>
+            {% endif %}
+        </section>
+        {% include 'buttonpages.html' %}
+    </main>
+{% endblock body %}

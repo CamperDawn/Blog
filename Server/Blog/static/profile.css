@@ -1,0 +1,26 @@
+.container-pages {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn {
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+.btn>img {
+    width: 100%;
+}
+.inactive {
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: transparent;
+    position: relative;
+}
+.page-current {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
