@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from . import models
+import re
 
 ctxGlobal = {}
 ctxGlobal['categories'] = [
@@ -114,7 +117,41 @@ def Search(request):
     return render(request,'search.html',ctxLocal)
 
 def LoginRegister(request,path):
-    pass
+    ctxLocal = {}
+    if request.method == 'POST':
+        redir = request.POST.get('next','home_page')
+        if request.POST['action'] == 'login':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request,username=username,password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(to=redir)
+            else:
+                ctxLocal['userNotFound'] = True
+        else:
+            username = request.POST['username']
+            password1 = request.POST['password1']
+            password2 = request.POST['password2']
+            email = request.POST['email']
+            try:
+                if User.objects.get(username=username):
+                    ctxLocal['userExists'] = True
+            except:
+                if len(password1) >= 8 and password1 == password2:
+                    if re.match(r'\w+@\w+\.com',email):
+                        password_has = make_password(password1)
+                        user = User.objects.create(username=username,email=email,password=password_has)
+                        models.Profile.objects.create(usuario=user,img='/media/resource/user-icon.svg')
+                        login(request,user)
+                        return redirect(to=redir)
+                    else:
+                        ctxLocal['incorrectEmail'] = True
+                else:
+                    ctxLocal['incorrectPassword'] = True
+    elif request.method == 'GET':
+        logout(request)
+    return render(request,'loginregister.html',ctxLocal)
 
 def Detais(request,id_post):
     pass
