@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="nombre de usuario" value="{{username}}">
+        <input type="email" name="email" placeholder="correo" value="{{email}}">
+        <input type="text" name="first_name" placeholder="nombre" value="{{first_name}}">
+        <input type="text" name="last_name" placeholder="apellido" value="{{last_name}}">
+        <input type="password" name="password1" placeholder="nueva contraseña">
+        <input type="password" name="password2" placeholder="repetir contraseña">
+        <input type="file" name="image">
+        <img src={{image}}>
+        <textarea name="bio" placeholder="biografia">{{bio}}</textarea>
+        <input type="submit" value="Cambiar">
+    </form>
+{% endblock body %}

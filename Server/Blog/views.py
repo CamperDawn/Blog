@@ -240,4 +240,54 @@ def CreatePost(request,user_name):
 
 @login_required(login_url='/auth/login/',redirect_field_name='next')
 def Config(request,user_name):
-    pass
+    ctxLocal = {}
+    
+    if request.user.is_authenticated:
+        if user_name != request.user:
+            return redirect(to=f'/profile/{request.user}/create/')
+        ctxLocal['image_user'] = imageUser(request.user)
+    
+    user = User.objects.get(username=request.user)
+    profile_user = models.Profile.objects.get(usuario=user)
+    if request.method == 'GET':
+        ctxLocal['username'] = user.username
+        ctxLocal['email'] = user.email
+        ctxLocal['first_name'] = user.first_name
+        ctxLocal['last_name'] = user.last_name
+        ctxLocal['bio'] = profile_user.bio
+    else:
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        image = request.FILES.get('image',None)
+        bio = request.POST['bio']
+        try:
+            if username == user.username:
+                raise
+            if User.objects.get(username=username):
+                ctxLocal['userExists'] = True
+        except:
+            if re.match(r'\w+@\w+\.com',email):      
+                if len(password1) > 0 and len(password1) < 8:
+                    ctxLocal['incorrectPassword'] = True
+                elif len(password1) >= 8 and password1 == password2:
+                    password_has = make_password(password1)
+                    user.password = password_has
+ 
+                if image != None:
+                    profile_user.img = image
+                    
+                user.username = username
+                user.email = email
+                user.first_name = first_name
+                user.last_name = last_name
+                profile_user.bio = bio
+                user.save()
+                profile_user.save()
+            else:
+                ctxLocal['incorrectEmail'] = True
+            
+    return render(request,'config.html',ctxLocal)
