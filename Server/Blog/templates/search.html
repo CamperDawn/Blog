@@ -3,29 +3,33 @@
 
 {% block css %}
     <link rel="stylesheet" href={% static "buttonpages.css" %}>
+    <link rel="stylesheet" href={% static "search.css" %}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
 {% endblock css %}
 
 {% block body %}
     <main>
-        <h2>BUSQUEDA: {{request.GET.search_input|default:"Todos los Post"}}</h2>
+        <h2 class="title-general">BUSQUEDA: {{request.GET.search_input|default:"Todos los Post"}}</h2>
         <form class="filters" action="" method="GET">
             <input type="hidden" name="search_input" value="{{request.GET.search_input}}">
             <label for="c">Categoria:</label>
             <select name="category" id="c">
                 {% for elem in categories %}
-                    <option {% if elem.value == request.GET.category %}selected{% endif %} value="{{elem.value}}">{{elem.category}}</option>
+                    <option {% if elem.value == request.GET.category %}selected{% endif %} value="{{elem.value}}">{{elem.category|capfirst}}</option>
                 {% endfor %}
             </select>
             <label for="t">Tipo:</label>
             <select name="type" id="t">
                 {% for elem in types %}
-                    <option {% if elem.value == request.GET.type %}selected{% endif %} value="{{elem.value}}">{{elem.type}}</option>
+                    <option {% if elem.value == request.GET.type %}selected{% endif %} value="{{elem.value}}">{{elem.type|capfirst}}</option>
                 {% endfor %}
             </select>
             <label for="o">Orden:</label>
             <select name="order" id="o">
                 {% for elem in orders %}
-                    <option {% if elem.value == request.GET.order %}selected{% endif %} value="{{elem.value}}">{{elem.order}}</option>
+                    <option {% if elem.value == request.GET.order %}selected{% endif %} value="{{elem.value}}">{{elem.order|capfirst}}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="Filtrar">
@@ -33,10 +37,10 @@
         <section class="search-results">
             {% if list_post %}
                 {% for elem in list_post %}
-                    <a href="/details/{{elem.id}}">
-                        <h3>{{elem.title}}</h3>
-                        <p>{{elem.description}}</p>
-                        <span>{{elem.post_date}}</span>
+                    <a href="/details/{{elem.id}}" class="dat-post">
+                        <h3 class="font-title">{{elem.title|truncatechars:50}}</h3>
+                        <p class="descr">{{elem.description|truncatechars:300}}</p>
+                        <span id="date">{{elem.post_date}}</span>
                     </a>
                 {% endfor %}
             {% else %}
