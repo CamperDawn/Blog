@@ -1,0 +1,50 @@
+.search-results {
+    margin: auto;
+    width: 85%;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5;
+    gap: 20px;
+}
+
+.dat-post {
+    color: #073020;
+    position: relative;
+    height: 160px;
+    border-radius: 10px;
+    text-align: justify;
+    background-color: #DAF7A6;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    padding: 5px;
+}
+
+#date {
+    top: 90%;
+    left: 83%;
+    position: absolute;
+    font-size: x-small;
+}
+
+.title-general {
+    font-family: 'Hind Siliguri', sans-serif;
+    margin: 25px;
+}
+
+.filters {
+    font-family: 'Hind Siliguri', sans-serif;
+    margin: 20px;
+    display: flex;
+    gap: 7px;
+}
+
+.descr {
+    padding: 10px;
+}
+
+.font-title {
+    font-size: 1.5em;
+    font-family: 'Hind Siliguri', sans-serif;
+}
