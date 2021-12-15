@@ -123,7 +123,7 @@ def LoginRegister(request,path):
     ctxLocal = {}
     if request.method == 'POST':
         redir = request.POST.get('next','home_page')
-        if request.POST['action'] == 'login':
+        if request.POST['action'] == 'Login':
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request,username=username,password=password)
