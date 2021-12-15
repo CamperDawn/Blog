@@ -1,17 +1,50 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    <link rel="stylesheet" href={% static "config.css" %}>
+{% endblock css %}
+
 {% block body %}
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="nombre de usuario" value="{{username}}">
-        <input type="email" name="email" placeholder="correo" value="{{email}}">
-        <input type="text" name="first_name" placeholder="nombre" value="{{first_name}}">
-        <input type="text" name="last_name" placeholder="apellido" value="{{last_name}}">
-        <input type="password" name="password1" placeholder="nueva contraseña">
-        <input type="password" name="password2" placeholder="repetir contraseña">
-        <input type="file" name="image">
-        <img src={{image}}>
-        <textarea name="bio" placeholder="biografia">{{bio}}</textarea>
-        <input type="submit" value="Cambiar">
+        <h3>Configuración</h2>
+        <div>
+            <label for="user">Nombre de Usuario: </label>
+            <input id="user" type="text" name="username" placeholder="nombre de usuario" value="{{username}}">
+        </div>
+        <div>
+            <label for="email">Correo: </label>
+            <input id="email" type="email" name="email" placeholder="correo" value="{{email}}">
+        </div>
+        <div>
+            <label for="firstn">Nombres: </label>
+            <input id="firstn" type="text" name="first_name" placeholder="nombre" value="{{first_name}}">
+        </div>
+        <div>
+            <label for="lastn">Apellidos: </label>
+            <input id="lastn" type="text" name="last_name" placeholder="apellido" value="{{last_name}}">
+        </div>
+        <div>
+            <label for="pasw1">Nueva contraseña: </label>
+            <input id="pasw1" type="password" name="password1" placeholder="nueva contraseña">
+        </div>
+        <div>
+            <label for="pasw2">Repetir Nueva Contraseña: </label>
+            <input id="pasw2" type="password" name="password2" placeholder="repetir contraseña">
+        </div>
+        <div>
+            <label for="img">Imagen </label>
+            <input id="img" type="file" name="image">
+            <img src={{image}}>
+        </div>
+        <div class="biog">
+            <label for="biog">Biografia: </label>
+            <textarea id="biog" name="bio" placeholder="biografia">{{bio}}</textarea>
+        </div>
+        
+        <div class="sub">
+            <input id="sub" type="submit" value="Cambiar">
+        </div>
+        
     </form>
 {% endblock body %}
