@@ -102,13 +102,12 @@ input#sub {
     border-radius: 6px;
     align-self: center;
     width: 60%;
-    height: 10%;
-    padding-left: 35%;
-    padding-right: 45%;
+    height: 15%;
     display: inline-block;
     background-color: rgb(4, 4, 42);
     color: white;
     font-size: 20px;
+    padding: 10px;
 }
 
 input#sub:hover {
