@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block css %}
     <link rel="stylesheet" href={% static "config.css" %}>
 {% endblock css %}
 
 {% block body %}
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form class="config-form" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <h3>Configuración</h2>
         <div>
