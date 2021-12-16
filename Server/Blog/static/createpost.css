@@ -2,8 +2,8 @@ body{
     background-color: rgb(222, 248, 244)
 }
 
-form{
-    margin: 1%;
+.create-form{
+    margin: auto;
     padding: 1em;
     width: 90%;
     height: auto;
@@ -19,6 +19,7 @@ label{
 
 #ti{
     width: 80%;
+    font-size: 1.2rem;
 }
 
 div.tit>label{
@@ -35,12 +36,14 @@ div.tit>input{
     width: 100%;
     padding-top: 1%;
     padding-bottom: 1%;
+    font-size: 1.2rem;
 }
 
 .contenido{
     width: 100%;
     padding-top: 1%;
     padding-bottom: 1%;
+    font-size: 1.2rem;
 }
 
 .de{
@@ -53,13 +56,16 @@ div.tit>input{
 #de{
     border-radius: 6px;
     width: 95%;
-    height: 50%;
+    height: 400px;
     padding: 1%;
+    resize: none;
+    font-size: 1.2rem;
 }
 
 .im{
     padding-bottom: 1%;
     border-bottom: solid 1px rgb(226, 220, 220);
+    font-size: 1.2rem;
 }
 
 div.im>input#im{
@@ -78,6 +84,12 @@ div.im>input#im:hover {
     padding-top: 1%;
     padding-bottom: 1%;
     border-bottom: solid 1px rgb(226, 220, 220);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.ct>select {
+    font-size: 1.2rem;
+    padding: 5px;
 }
 
 .sub{
@@ -110,4 +122,5 @@ input#sub:hover {
     background-color: rgb(186, 236, 236);
     color: rgb(4, 4, 42);
     font-size: 20px;
+    cursor: pointer;
 }

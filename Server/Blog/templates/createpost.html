@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block body %}
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form class="create-form" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         
         <div class= "tit">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="im">
-            <label for="im"></label>
+            <label for="im">Imagen:</label>
             <input type="file" name="image" id="im">
         </div>
 
