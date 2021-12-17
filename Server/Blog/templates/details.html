@@ -1,39 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load strtoint %}
 
 {% block css %}
     <link rel="stylesheet" href={% static "details.css" %}>
+    <link rel="stylesheet" href={% static "buttonpages.css" %}>
 {% endblock css %}
 
 {% block body %}
     <main>
-        <section>
-            <h2>{{post.title}}</h2>
-            <section>
-                <a href="/profile/{{post.user}}/">{{post.user}}</a>
-                <span>{{post.category}}</span>
+        <section class="content-post">
+            <h2 class="title-post">{{post.title}}</h2>
+            <section class="meta-post">
+                <span>Publicado el {{post.post_date|date:"d/m/Y  H:i"}} hs</span>
+                <span>por <a href="/profile/{{post.user}}/">{{post.user}}</a></span>
+                {% for categ in categories %}
+                    {% ifequal post.category categ.value|conv %}
+                        <span class="category"><a href="/search/?search_input=&category={{categ.value}}&type=3&order=1">{{categ.category}}</a></span>
+                    {% endifequal %}
+                {% endfor %}
             </section>
-            <p>{{post.description}}</p>
-            <img src="/media/{{post.img}}">    
+            {% if post.img %}
+                <img class="img-post" src="/media/{{post.img}}">
+            {% else %}
+                <img class="img-post" src="/media/resource/img-logo.png">
+            {% endif %}
+            <section class="content-desc">
+                <p class="desc-post">{{post.description|linebreaks}}</p>
+            </section>
         </section>
-        <section>
+        <section class="content-comment">
             {% if commentPermission %}
-                <form action="" method="POST">
+                <form class="form-comment" action="" method="POST">
                     {% csrf_token %}
                     <input type="text" name="comment" placeholder="Comenta">
-                    <input type="submit" value="Comentar">
+                    <input type="submit" name="commenting" value="Comentar">
                 </form>
             {% else %}
-                <span><a href="/auth/login">Inicia Sesion</a> para comentar</span>
+                <span class="msj-login"><a href="/auth/login/?next={{request.path}}">Inicia Sesion</a><div>&nbsppara comentar</div></span>
             {% endif %}
-            <h3>Caja de Comentarios:</h3>
-            {% for comm in list_comments %}
-                <article>
-                    <h4>{{comm.author}}</h4>
-                    <p>{{comm.content}}</p>
-                    <span>{{comm.comment_date}}</span>
-                </article>
-            {% endfor %}
+            <h4 class="comments-title">Comentarios </h4>
+            <section class="container-comments">
+                {% if list_comments %}
+                    {% for comm in list_comments %}
+                        <article class="comment-item">
+                            <div class="meta-comm">
+                                <h5 class="author-comm">{{comm.author}}</h5>
+                                <span class="date-comm">{{comm.comment_date|date:"d/m/Y  H:i"}} hs</span>
+                            </div>
+                            <p class="content-comm">{{comm.content|linebreaks}}</p>
+                        </article>
+                    {% endfor %}
+                    {% include 'buttonpages.html' %}
+                {% else %}
+                    <h4 class="msj-error">No hay comentarios</h4>
+                {% endif %}
+            </section>
         </section>
     </main>
 {% endblock body %}

@@ -158,7 +158,11 @@ def LoginRegister(request,path):
 
 def Detais(request,id_post):
     ctxLocal = {}
+    ctxLocal['categories'] = ctxGlobal['categories']
     ctxLocal['commentPermission'] = False
+    ctxLocal['page'] = 1
+    ctxLocal['more'] = False
+    calc_posts = 0
     
     if request.user.is_authenticated:
         ctxLocal['image_user'] = imageUser(request.user)
@@ -167,16 +171,36 @@ def Detais(request,id_post):
     try:
         ctxLocal['post'] = models.Post.objects.get(id=id_post)
         if request.method == 'POST':
-            user = User.objects.get(username=request.user)
-            comm = request.POST['comment']
-            models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
-            ctxLocal['post'].comment_numbers += 1
-            ctxLocal['post'].save()
+            if request.POST.get('commenting',False):
+                comm = request.POST['comment']
+                if re.match(r'\w+',comm):
+                    user = User.objects.get(username=request.user)
+                    models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
+                    ctxLocal['post'].comment_numbers += 1
+                    ctxLocal['post'].save()
+            else:
+                prev = request.POST.get('prev',None)
+                next = request.POST.get('next',None)
+                if prev == None:
+                    next = int(next)
+                    calc_posts = (next-1)*10
+                    ctxLocal['page'] = next
+                elif next == None:
+                    prev = int(prev)
+                    calc_posts = (prev-1)*10
+                    ctxLocal['page'] = prev
     except Exception as ex:
+        print(ex)
         return redirect('home_page')
     else:
         if ctxLocal['post'].comment_numbers != 0:
             ctxLocal['list_comments'] = models.Comment.objects.filter(post=ctxLocal['post']).order_by('-comment_date')
+        
+            more_posts = ctxLocal['list_comments'][calc_posts:calc_posts+11]
+            ctxLocal['list_comments'] = ctxLocal['list_comments'][calc_posts:calc_posts+10]
+            
+            if len(more_posts)>10:
+                ctxLocal['more'] = True
     
     return render(request,'details.html',ctxLocal)
 
