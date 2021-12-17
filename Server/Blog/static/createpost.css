@@ -103,23 +103,16 @@ input#sub {
     align-self: center;
     width: 60%;
     height: 15%;
-    display: inline-block;
     background-color: rgb(4, 4, 42);
     color: white;
     font-size: 20px;
     padding: 10px;
+    padding-left: 6%;
+    padding-right: 6%;
 }
 
 input#sub:hover {
-    border-radius: 6px;
-    align-self: center;
-    width: 60%;
-    height: 10%;
-    padding-left: 35%;
-    padding-right: 45%;
-    display: inline-block;
     background-color: rgb(186, 236, 236);
     color: rgb(4, 4, 42);
-    font-size: 20px;
     cursor: pointer;
 }
