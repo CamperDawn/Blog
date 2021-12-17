@@ -320,6 +320,7 @@ def Config(request,user_name):
                 profile_user.bio = bio
                 user.save()
                 profile_user.save()
+                return redirect(f"/profile/{request.user}/")
             else:
                 ctxLocal['incorrectEmail'] = True
             
