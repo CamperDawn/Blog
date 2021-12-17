@@ -262,12 +262,13 @@ def CreatePost(request,user_name):
         image = request.FILES.get('image',"")
         category = request.POST['category']
         type = request.POST['type']
-        user = User.objects.get(username=request.user)
-        post = models.Post.objects.create(title=title,description=desc,img=image,category=category,post_type=type,user=user)
-        if post != None:
-            return redirect(to=f'/profile/{request.user}/')
-        else:
-            ctxLocal['errorPost'] = True
+        if re.match(r'\w+',title) and re.match(r'\w+',desc):
+            user = User.objects.get(username=request.user)
+            post = models.Post.objects.create(title=title,description=desc,img=image,category=category,post_type=type,user=user)
+            if post != None:
+                return redirect(to=f'/profile/{request.user}/')
+            else:
+                ctxLocal['errorPost'] = True
         
     return render(request,'createpost.html',ctxLocal)
 
