@@ -6,26 +6,45 @@
 {% endblock css %}
 
 {% block body %}
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form class="create-form" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="ti">Titulo:</label>
-        <input type="text" name="title" id="ti">
-        <label for="de">Contenido:</label>
-        <textarea name="desc" id="de"></textarea>
-        <label for="im"></label>
-        <input type="file" name="image" id="im">
-        <label for="c">Categoria:</label>
-        <select name="category" id="c">
-            {% for elem in categories %}
-                <option {% if elem.value == '18' %}selected{% endif %} value="{{elem.value}}">{{elem.category}}</option>
-            {% endfor %}
-        </select>
-        <label for="t">Tipo:</label>
-        <select name="type" id="t">
-            {% for elem in types %}
-                <option {% if elem.value == '2' %}selected{% endif %} value="{{elem.value}}">{{elem.type}}</option>
-            {% endfor %}
-        </select>
-        <input type="submit">
+        
+        <div class= "tit">
+            <label for="ti">Titulo</label>
+            <input type="text" name="title" id="ti">
+        </div>
+        <div class="contenido">
+            <label for="de">Contenido</label>
+            <div class="de">
+                <textarea name="desc" id="de"></textarea>
+            </div>
+        </div>
+
+        <div class="im">
+            <label for="im">Imagen:</label>
+            <input type="file" name="image" id="im">
+        </div>
+
+        <div class="ct">
+            <label for="c">Categoria:</label>
+            <select name="category" id="c">
+                {% for elem in categories %}
+                    <option {% if elem.value == '18' %}selected{% endif %} value="{{elem.value}}">{{elem.category}}</option>
+                {% endfor %}
+            </select>
+        
+            <label for="t">Tipo de post:</label>
+            <select name="type" id="t">
+                {% for elem in types %}
+                    <option {% if elem.value == '2' %}selected{% endif %} value="{{elem.value}}">{{elem.type}}</option>
+                {% endfor %}
+            </select>
+            
+        </div>
+        <div class="sub">
+            <input id="sub" type="submit">
+        </div>
+
     </form>
+
 {% endblock body %}

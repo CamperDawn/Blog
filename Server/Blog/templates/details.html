@@ -7,13 +7,33 @@
 
 {% block body %}
     <main>
-        {{post.user}} <br>
-        {{post.title}} <br>
-        {{post.desc}} <br>
-        {% if post.category == 8 %}
-        nombre de esta categoria
-        {% endif %}
-        {{post.category}} <br>
-        <img src="/media/{{post.image}}"> <br>
+        <section>
+            <h2>{{post.title}}</h2>
+            <section>
+                <a href="/profile/{{post.user}}/">{{post.user}}</a>
+                <span>{{post.category}}</span>
+            </section>
+            <p>{{post.description}}</p>
+            <img src="/media/{{post.img}}">    
+        </section>
+        <section>
+            {% if commentPermission %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="comment" placeholder="Comenta">
+                    <input type="submit" value="Comentar">
+                </form>
+            {% else %}
+                <span><a href="/auth/login">Inicia Sesion</a> para comentar</span>
+            {% endif %}
+            <h3>Caja de Comentarios:</h3>
+            {% for comm in list_comments %}
+                <article>
+                    <h4>{{comm.author}}</h4>
+                    <p>{{comm.content}}</p>
+                    <span>{{comm.comment_date}}</span>
+                </article>
+            {% endfor %}
+        </section>
     </main>
 {% endblock body %}

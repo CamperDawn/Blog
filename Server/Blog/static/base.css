@@ -104,10 +104,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .menu {
     position: absolute;
-    left: calc(-100% + .8rem);
+    left: calc(-100% + 1.5rem);
     top: calc(100% + .8rem);
     background-color: white;
-    padding: .75rem;
+    width: 84px;
+    padding: .75rem 0;
     border-radius: .25rem;
     box-shadow: 0 2px 5px 0 #333;
     opacity: 0;
@@ -117,6 +118,15 @@ body::-webkit-scrollbar-thumb:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.menu>a {
+    width: 100%;
+    height: 20px;
+    padding: auto;
+    text-align: center;
+}
+.menu>a:hover {
+    background-color: #888;
 }
 .active {
     opacity: 1;
@@ -131,5 +141,5 @@ body::-webkit-scrollbar-thumb:hover {
     border-color: transparent #fff transparent transparent;
     position: absolute;
     top: -15px;
-    left: 67%;
+    left: 70%;
 }

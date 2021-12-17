@@ -123,7 +123,7 @@ def LoginRegister(request,path):
     ctxLocal = {}
     if request.method == 'POST':
         redir = request.POST.get('next','home_page')
-        if request.POST['action'] == 'login':
+        if request.POST['action'] == 'Login':
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(request,username=username,password=password)
@@ -145,7 +145,7 @@ def LoginRegister(request,path):
                     if re.match(r'\w+@\w+\.com',email):
                         password_has = make_password(password1)
                         user = User.objects.create(username=username,email=email,password=password_has)
-                        models.Profile.objects.create(usuario=user,img='/media/resource/user-icon.svg')
+                        models.Profile.objects.create(usuario=user,img='resource/user-icon.svg')
                         login(request,user)
                         return redirect(to=redir)
                     else:
@@ -166,6 +166,12 @@ def Detais(request,id_post):
     
     try:
         ctxLocal['post'] = models.Post.objects.get(id=id_post)
+        if request.method == 'POST':
+            user = User.objects.get(username=request.user)
+            comm = request.POST['comment']
+            models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
+            ctxLocal['post'].comment_numbers += 1
+            ctxLocal['post'].save()
     except Exception as ex:
         return redirect('home_page')
     else:
