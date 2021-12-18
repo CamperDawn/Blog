@@ -48,7 +48,7 @@
                             <div class="body-text">
                                 <h3 class="font-title">{{elem.title|truncatechars:40 | capfirst}}</h3>
                                 <p class="descr">{{elem.description|truncatechars:150 | capfirst}}</p>
-                                <span class="date">{{elem.post_date|date:'D M Y'}}</span>
+                                <span class="date">{{elem.post_date|date:'d/m/Y  H:i'}}hs</span>
                             </div>
                     </a>
                 {% endfor %}
