@@ -10,11 +10,11 @@
 {% endblock css %}
 
 {% block body %}
-    <main>
+    <main class="cont">
         <h2 class="title-general">BUSQUEDA: {{request.GET.search_input|default:"Todos los Post"}}</h2>
         <form class="filters" action="" method="GET">
             <input type="hidden" name="search_input" value="{{request.GET.search_input}}">
-            <label for="c">Categoria:</label>
+            <label class="op1" for="c">Categoria:</label>
             <select name="category" id="c">
                 {% for elem in categories %}
                     <option {% if elem.value == request.GET.category %}selected{% endif %} value="{{elem.value}}">{{elem.category|capfirst}}</option>
@@ -37,14 +37,23 @@
         <section class="search-results">
             {% if list_post %}
                 {% for elem in list_post %}
-                    <a href="/details/{{elem.id}}" class="dat-post">
-                        <h3 class="font-title">{{elem.title|truncatechars:50}}</h3>
-                        <p class="descr">{{elem.description|truncatechars:300}}</p>
-                        <span id="date">{{elem.post_date}}</span>
+                    <a class="cards" href="/details/{{elem.id}}" >
+                            <div >
+                                {% if elem.img %}
+                                    <img class="img-imp" src="/media/{{elem.img}}">
+                                {% else %}
+                                    <img class="img-imp" src="/media/resource/img-logo.png">
+                                {% endif %}
+                            </div>
+                            <div class="body-text">
+                                <h3 class="font-title">{{elem.title|truncatechars:40 | capfirst}}</h3>
+                                <p class="descr">{{elem.description|truncatechars:150 | capfirst}}</p>
+                                <span class="date">{{elem.post_date|date:'D M Y'}}</span>
+                            </div>
                     </a>
                 {% endfor %}
             {% else %}
-                <h2>NO HAY POSTS CON ESTOS FILTROS</h2>
+                <p class="empty-post">NO HAY POSTS CON ESTOS FILTROS</p>
             {% endif %}
         </section>
         {% include 'buttonpages.html' %}
