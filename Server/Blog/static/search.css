@@ -9,8 +9,8 @@
     grid-template-columns: 1fr 1fr;
     color: #000;
     height: auto;
-    margin: 50px 90px 50px;
-    width: 80%;
+    margin: 0 auto 0 auto;
+    width: 87%;
     grid-template-rows: 5;
     gap: 20px;
 }

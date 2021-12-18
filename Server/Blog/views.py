@@ -38,9 +38,10 @@ def imageUser(req_user):
 
 def Home(request):
     ctxLocal = {}
-    #----------------------------------------
-    # obtener los destacados para el carusel
-    #----------------------------------------
+    try:
+        ctxLocal['posts_desta'] = models.Post.objects.filter(post_type=1).order_by('-post_date')[:3]
+    except :
+        pass
     if request.user.is_authenticated:
         ctxLocal['image_user'] = imageUser(request.user)
     ctxLocal['range'] = range(1,19)

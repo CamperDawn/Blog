@@ -1,82 +1,174 @@
-
-.main-category {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 50%;
-    height: 100%;
-    margin: auto;
+.carousel-indicators>button[data-bs-target] {
+    background-color: #000;
 }
-.title-category {
-    padding: 30px;
+.carousel-caption {
+    color: #000;
+    padding: 10%;
+}
+.carousel-caption>h5 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+.carousel-caption>p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.carousel-item>img {
+    opacity: .5;
+}
+.carousel-control-prev,.carousel-control-next {
+    background-color: #000;
+}
+#carouselExampleCaptions{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 220px;
+}
+.w-100{
+    width: 100%;
+    height: 200%;
+    padding: 10px 150px;
+
+}
+
+.titulo{
     text-align: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.category-item {
-    width: 113px;
-    height: 113px;
-    background-color: aliceblue;
+
+.sprites{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-auto-rows: 111px;
+    gap: 2em;
+    justify-content: center;
+    padding: 5% 40%;
 }
-.img-item {
-    background: url('/media/resource/icon-category.png') no-repeat;
-    width: 113px;
-    height: 113px;
+
+.item {
+    background-image: url(/media/resource/icon-category.png);
 }
-.category-item:hover {
+
+.item:hover {
     transform: scale(0.95);
-}
-.i1 {
-    background-position: 0 -94px;
-}
-.i2 {
-    background-position: -123px -94px;
-}
-.i3 {
-    background-position: -248px -94px;
-}
-.i4 {
-    background-position: -371px -94px;
-}
-.i5 {
-    background-position: -494px -94px;
-}
-.i6 {
-    background-position: -617px -94px;
+    cursor: pointer;
 }
 
-.i7 {
-    background-position: 0 -216px;
-}
-.i8 {
-    background-position: -123px -216px;
-}
-.i9 {
-    background-position: -248px -216px;
-}
-.i10 {
-    background-position: -371px -216px;
-}
-.i11 {
-    background-position: -494px -216px;
-}
-.i12 {
-    background-position: -617px -216px;
+.sprites > a{
+    border: none;
 }
 
-.i13 {
-    background-position: 0 -338px;
+.sprites > a > img:hover{
+    border: 2px solid orange;
 }
-.i14 {
-    background-position: -123px -338px;
+
+#sprite1{
+    width: 111px;
+    height: 111px;
+    background-position: 0px -95px;
 }
-.i15 {
-    background-position: -248px -338px;
+
+
+#sprite2{
+    width: 111px;
+    height: 111px;
+    background-position: -125px -95px;
 }
-.i16 {
-    background-position: -371px -338px;
+
+#sprite3{
+    width: 111px;
+    height: 111px;
+    background-position: -250px -95px;
 }
-.i17 {
-    background-position: -494px -338px;
+
+#sprite4{
+    width: 111px;
+    height: 111px;
+    background-position: -372px -95px;
 }
-.i18 {
-    background-position: -617px -338px;
+
+#sprite5{
+    width: 111px;
+    height: 111px;
+    background-position: -495px -95px;
+}
+
+#sprite6{
+    width: 111px;
+    height: 111px;
+    background-position: -620px -95px;
+}
+
+#sprite7{
+    width: 111px;
+    height: 111px;
+    background-position: -2px -218px;
+}
+
+#sprite8{
+    width: 111px;
+    height: 111px;
+    background-position: -124px -218px;
+}
+
+#sprite9{
+    width: 111px;
+    height: 111px;
+    background-position: -250px -218px;
+}
+
+#sprite10{
+    width: 111px;
+    height: 111px;
+    background-position: -373px -218px;
+}
+
+#sprite11{
+    width: 111px;
+    height: 111px;
+    background-position: -496px -218px;
+}
+
+#sprite12{
+    width: 111px;
+    height: 111px;
+    background-position: -620px -218px;
+}
+
+#sprite13{
+    width: 111px;
+    height: 111px;
+    background-position: -2px -340px;
+}
+
+#sprite14{
+    width: 111px;
+    height: 111px;
+    background-position: -123px -340px;
+}
+
+#sprite15{
+    width: 111px;
+    height: 111px;
+    background-position: -248px -340px;
+}
+
+#sprite16{
+    width: 111px;
+    height: 111px;
+    background-position: -372px -340px;
+}
+
+#sprite17{
+    width: 111px;
+    height: 111px;
+    background-position: -496px -340px;
+}
+
+#sprite18{
+    width: 111px;
+    height: 111px;
+    background-position: -620px -340px;
 }

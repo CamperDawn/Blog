@@ -7,47 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/media/resource/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href={% static "base.css" %}>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     {% block css %}{% endblock css %}
     <title>MDS</title>
 </head>
 <body>
-    <header class="header-container">
-        <nav class="nav-container">
-            <section class="container-logo">
-                <a href="/" class="link-logo">
-                    <img class="img-logo" src="/media/resource/img-logo.png">
-                </a>
-            </section>
-            <form class="search" action="/search/" method="GET">
-                <input class="input-search" type="search" name="search_input" placeholder="Buscar Titulos" value={{request.GET.search_input}}>
+    <header class="header">
+        <nav class="contenedor logo-nav-contenedor">
+            <a href="/" class="contenedor-logo">
+                <img src="/media/resource/img-logo.png" width="100px" height="100px">
+                <span class="logo">MDS<i>Metas de Desarrollo Sustentable</i></span>
+            </a>
+            <form class="caja-de-busqueda" action="/search/" method="GET">
+                <input class="boton-de-texto" type="search" name="search_input" placeholder="Buscar Titulos" value={{request.GET.search_input}}>
                 <input id='ca' type="hidden" name="category" value={{request.GET.category|default:"18"}}>
                 <input id='ty' type="hidden" name="type" value={{request.GET.type|default:"3"}}>
                 <input id='orr' type="hidden" name="order" value={{request.GET.order|default:"1"}}>
-                <button class="btn-search" type="submit"><img src="/media/resource/search-icon.svg"></button>
-            </form>
-            <section class="session-container">
-                <button class="access">
-                    {% if request.user.is_authenticated %}
-                        <img src="/media/{{image_user}}">
-                    {% else %}
-                        <img src="/media/resource/user-icon.svg">
-                    {% endif %}
+                <button class="boton-de-busqueda" type="submit">
+                    <i class="fas fa-search"></i>
                 </button>
-                    <div class="menu">
-                        {% if not request.user.is_authenticated %}
-                            <a href="/auth/login/">Login</a>
-                            <a href="/auth/register/">Register</a>
+            </form>
+            {% if request.user.is_authenticated %}
+                <section class="session-container">
+                    <button class="access">
+                        {% if request.user.is_authenticated %}
+                            <img src="/media/{{image_user}}">
                         {% else %}
-                            <a href="/profile/{{request.user}}/">Perfil</a>
-                            <a href="/auth/login/">Log Out</a>
+                            <img src="/media/resource/user-icon.svg">
                         {% endif %}
-                    </div>
-            </section>
+                    </button>
+                        <div class="menu">
+                            {% if not request.user.is_authenticated %}
+                                <a href="/auth/login/">Login</a>
+                                <a href="/auth/register/">Register</a>
+                            {% else %}
+                                <a href="/profile/{{request.user}}/">Perfil</a>
+                                <a href="/auth/login/">Log Out</a>
+                            {% endif %}
+                        </div>
+                </section>
+            {% else %}
+                <div class="icono-de-login">
+                    <a class="fas fa-user" href="/auth/login/"></a>
+                </div>
+            {% endif %}
         </nav>
     </header>
     {% block body %}{% endblock body %}
-    <footer class="foot-container">
-        esto es el pie de pagina
+    <footer class="footer">
+        <div class="contenedor-footer">
+            <p>Blog diseñado por Metas de Desarrollo Sustentable</p>
+        </div>
     </footer>
     <script>
         let btnProfile = document.querySelector(".access")

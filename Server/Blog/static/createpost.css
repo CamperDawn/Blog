@@ -1,6 +1,4 @@
-body{
-    background-color: rgb(222, 248, 244)
-}
+
 
 .create-form{
     margin: auto;
@@ -9,6 +7,7 @@ body{
     height: auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: auto;
+    background-color: rgb(222, 248, 244);
     border: solid 4px rgb(4, 4, 42);
     border-radius: 10px;
 }
