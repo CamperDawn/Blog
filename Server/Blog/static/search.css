@@ -1,36 +1,44 @@
-.search-results {
-    margin: auto;
-    width: 85%;
-    padding: 15px;
+.cont {
+    margin-top: -11px;
+    padding: 0%;
+    background-color: #fff;
+}
+
+.search-results{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    color: #000;
+    height: auto;
+    margin: 50px 90px 50px;
+    width: 80%;
     grid-template-rows: 5;
     gap: 20px;
 }
 
-.dat-post {
-    color: #073020;
-    position: relative;
-    height: 160px;
-    border-radius: 10px;
-    text-align: justify;
-    background-color: #DAF7A6;
+.cards {
     display: flex;
     flex-direction: column;
-    justify-content: baseline;
-    padding: 5px;
+    justify-content: space-between;
+    width: 35em;
+    height: 23em;
+    padding: 15px;
+    background-color: #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: all 0.25s;
 }
 
-#date {
-    top: 90%;
-    left: 83%;
-    position: absolute;
-    font-size: x-small;
+.search-results .cards .date {
+    display: flex;
+    justify-content: right;
+    font-size: 10px;
 }
 
 .title-general {
     font-family: 'Hind Siliguri', sans-serif;
     margin: 25px;
+    font-size: 27px;
 }
 
 .filters {
@@ -45,6 +53,37 @@
 }
 
 .font-title {
-    font-size: 1.5em;
+    font-size: 1.7em;
     font-family: 'Hind Siliguri', sans-serif;
+}
+
+.img-imp {
+    overflow: hidden;
+    width: 500px;
+    height: 200px;
+    margin-left: 15px;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+.body-text {
+    text-align: justify;
+}
+
+.body-text .font-title {
+    text-align:justify;
+}
+
+.body-text .date{
+    display: inline;
+    text-align: right;
+}
+
+.body-text .descr {
+    padding: 0%;
+}
+
+.search-results .empty-post {
+    width: 100%;
+    text-align: center;
 }
