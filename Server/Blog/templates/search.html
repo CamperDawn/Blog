@@ -34,8 +34,8 @@
             </select>
             <input type="submit" value="Filtrar">
         </form>
-        <section class="search-results">
-            {% if list_post %}
+        {% if list_post %}
+            <section class="search-results">
                 {% for elem in list_post %}
                     <a class="cards" href="/details/{{elem.id}}" >
                             <div >
@@ -52,10 +52,10 @@
                             </div>
                     </a>
                 {% endfor %}
-            {% else %}
-                <p class="empty-post">NO HAY POSTS CON ESTOS FILTROS</p>
-            {% endif %}
-        </section>
+            </section>
+        {% else %}
+            <p class="empty-post">NO HAY POSTS CON ESTOS FILTROS</p>
+        {% endif %}
         {% include 'buttonpages.html' %}
     </main>
     <script>
