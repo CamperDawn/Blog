@@ -227,12 +227,14 @@ def Profile(request,user_name):
             prev = int(prev)
             calc_posts = (prev-1)*10
             ctxLocal['page'] = prev
+            
     try:  
-        user = User.objects.get(username=user_name)
+        ctxLocal['session_user'] = User.objects.get(username=user_name)
+        ctxLocal['session_profile'] = models.Profile.objects.get(usuario=ctxLocal['session_user'])
     except Exception as ex:
         return redirect(f'/profile/{request.user}/')
     else:
-        ctxLocal['list_post'] = models.Post.objects.filter(user=user)
+        ctxLocal['list_post'] = models.Post.objects.filter(user=ctxLocal['session_user'])
         
         more_posts = ctxLocal['list_post'][calc_posts:calc_posts+11]
         ctxLocal['list_post'] = ctxLocal['list_post'][calc_posts:calc_posts+10]

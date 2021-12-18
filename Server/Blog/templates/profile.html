@@ -8,24 +8,40 @@
 
 {% block body %}
     <main>
-        <section>
-            <a href="create/">CREAR POST</a>
-            <a href="config/">CONFIG</a>
+        <section class="session-profile">
+            <div class="image-profile">
+                {% if request.user.is_authenticated %}
+                    <img src="/media/{{session_profile.img}}">
+                {% else %}
+                    <img src="/media/resource/user-icon.svg">
+                {% endif %}
+            </div>
+            <div class="meta-profile">
+                <h2>{{session_user.get_full_name|default:session_user.username|title}}</h2>
+                <h3>Alias: {{session_user.username}}</h3>
+                <span class="bio">{{session_profile.bio|default:"no hay biografia"|linebreaks}}</span>
+                <span class="email">{{session_user.email}}</span>
+                {% if editPermmision %}
+                    <a class="edit edit1" href="create/">CREAR POST</a>
+                    <a class="edit edit2" href="config/">CONFIG</a>
+                {% endif %}
+            </div>
         </section>
-        <section>
+        <section class="container-post">
             {% if list_post %}
-                {% for el in list_post %}
-                    <a href="/details/{{el.id}}">
-                        <h3>{{el.title}}</h3>
-                        <p>{{el.desc}}</p>
-                        <span>{{elem.date}}</span>
-                        <img href="{{el.image}}" >
-                    </a>
-                {% endfor %}
+                <section class="list-posts">
+                    {% for el in list_post %}
+                        <a class="item-post" href="/details/{{el.id}}">
+                            <h3>{{el.title|truncatechars:45}}</h3>
+                            <p>{{el.description|truncatechars:220}}</p>
+                            <span class="post-date">{{el.post_date|date:"d/m/Y H:i"}} hs</span>
+                        </a>
+                    {% endfor %}
+                </section>
             {% else %}
-                <span>SIN POSTS TODAVIA</span>
+                <p class="emty-post">SIN POSTS TODAVIA</p>
             {% endif %}
+            {% include 'buttonpages.html' %}
         </section>
-        {% include 'buttonpages.html' %}
     </main>
 {% endblock body %}

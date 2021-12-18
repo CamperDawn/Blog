@@ -1,26 +1,90 @@
-.container-pages {
+body {
+    background-color: #ddd;
+}
+.session-profile {
+    background-color: #fff;
+    margin: 5px auto;
+    padding: 2%;
     display: flex;
+    width: 60%;
+    height: 60vh;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 40px;
 }
-.btn {
-    width: 1.6rem;
-    height: 1.6rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: relative;
+
+.image-profile {
+    justify-self: left;
+    width: 20vw;
+    height: 20vw;
+    border: 3px solid #000;
+    border-radius: 50%;
+    background-color: #fff;
+    overflow: hidden;
 }
-.btn>img {
+.image-profile>img {
     width: 100%;
 }
-.inactive {
-    width: 1.6rem;
-    height: 1.6rem;
-    background-color: transparent;
+.meta-profile {
+    position: relative;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.meta-profile>h2 {
+    text-align: center;
+}
+.meta-profile>h3 {
+    color: #444;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+.bio>p {
+    margin: 10px 20px;
+}
+.email {
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid #000;
+}
+.edit {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #44f;
+    color: #fff;
+    text-align: center;
+}
+
+.emty-post {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+.container-post {
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+}
+.list-posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5,1fr);
+    padding: 20px;
+    grid-gap: 10px;
+}
+.item-post {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 8px;
     position: relative;
 }
-.page-current {
-    font-size: 1.6rem;
-    font-weight: 700;
+.item-post>p {
+    margin: 10px 20px;
+}
+.post-date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
