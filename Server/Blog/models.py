@@ -40,6 +40,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def delete(self,**args):
+        self.img.delete(save=True)
+        return super().delete(**args)
         
 class Comment(models.Model):
     post=models.ForeignKey(Post, related_name='comment', on_delete=models.CASCADE, null=True)
