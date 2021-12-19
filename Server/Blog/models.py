@@ -1,9 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 # Create your models here.
 
@@ -51,8 +48,15 @@ class Comment(models.Model):
     comment_date = models.DateTimeField(auto_now_add=True)
     #likes_number = models.IntegerField(default=0)
 
-    def get_absolute_url(self):
-        return reverse("post_list")
-
     def __str__(self):
         return self.content
+    
+    def save(self,**args):
+        self.post.comment_numbers += 1
+        self.post.save()
+        return super().save(**args)
+    
+    def delete(self,**args):
+        self.post.comment_numbers -= 1
+        self.post.save()
+        return super().delete(**args)

@@ -176,9 +176,12 @@ def Detais(request,id_post):
                 comm = request.POST['comment']
                 if re.match(r'\w+',comm):
                     user = User.objects.get(username=request.user)
-                    models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
-                    ctxLocal['post'].comment_numbers += 1
-                    ctxLocal['post'].save()
+                    if len(models.Comment.objects.filter(author=user,post=ctxLocal['post'],content__icontains=comm)) != 0:
+                        models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
+                    else:
+                        ctxLocal['repeatedComment'] = True
+                else:
+                    ctxLocal['emptyComment'] = True
             else:
                 prev = request.POST.get('prev',None)
                 next = request.POST.get('next',None)
@@ -191,7 +194,6 @@ def Detais(request,id_post):
                     calc_posts = (prev-1)*10
                     ctxLocal['page'] = prev
     except Exception as ex:
-        print(ex)
         return redirect('home_page')
     else:
         if ctxLocal['post'].comment_numbers != 0:
