@@ -176,7 +176,7 @@ def Detais(request,id_post):
                 comm = request.POST['comment']
                 if re.match(r'\w+',comm):
                     user = User.objects.get(username=request.user)
-                    if len(models.Comment.objects.filter(author=user,post=ctxLocal['post'],content__icontains=comm)) != 0:
+                    if len(models.Comment.objects.filter(author=user,post=ctxLocal['post'],content__icontains=comm)) == 0:
                         models.Comment.objects.create(post=ctxLocal['post'],author=user,content=comm)
                     else:
                         ctxLocal['repeatedComment'] = True
