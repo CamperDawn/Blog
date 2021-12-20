@@ -4,6 +4,7 @@
 .carousel-inner {
     height: 400px;
     padding-top: 5%;
+    background-color: #bbb;
 }
 .carousel-item {
     position: relative;
@@ -38,7 +39,7 @@
 }
 #carouselExampleCaptions{
     width: 90%;
-    margin: 0 auto;
+    margin: 15px auto;
     padding: 0 220px;
 }
 .w-100{
