@@ -3,9 +3,10 @@
     display: flex;
     gap: 5px;
     justify-content: center;
+    align-items: center;
 }
 
-.btn {
+.boton {
     width: 1.6rem;
     height: 1.6rem;
     background-color: transparent;
@@ -13,7 +14,7 @@
     cursor: pointer;
     position: relative;
 }
-.btn>img {
+.boton>img {
     width: 100%;
 }
 .inactive {
