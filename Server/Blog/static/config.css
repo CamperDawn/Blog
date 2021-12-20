@@ -4,7 +4,7 @@ h3{
 }
 
 .config-form {
-    margin:auto;
+    margin: 10px auto;
     padding: 1%;
     width: 65%;
     height: auto;
@@ -26,7 +26,7 @@ div>input{
     padding: 1%;
 }
 
-div{
+.camp{
     width: 90%;
     padding-top: 2%;
     padding-bottom: 3%;
