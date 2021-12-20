@@ -1,9 +1,26 @@
 .carousel-indicators>button[data-bs-target] {
     background-color: #000;
 }
+.carousel-inner {
+    height: 400px;
+    padding-top: 5%;
+}
+.carousel-item {
+    position: relative;
+}
+.carousel-item>div {
+    object-fit: cover;
+}
 .carousel-caption {
     color: #000;
+    width: 80%;
+    margin: auto;
     padding: 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 .carousel-caption>h5 {
     font-size: 2rem;
@@ -13,7 +30,7 @@
     font-size: 1rem;
     font-weight: 600;
 }
-.carousel-item>img {
+.carousel-item img {
     opacity: .5;
 }
 .carousel-control-prev,.carousel-control-next {

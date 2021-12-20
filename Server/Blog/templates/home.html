@@ -16,11 +16,13 @@
         <div class="carousel-inner">
             {% for elem in posts_desta %}
                 <a href="/details/{{elem.id}}" class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-                    {% if elem.img %}
-                        <img src="/media/{{elem.img}}" class="d-block w-100" alt="...">
-                    {% else %}
-                        <img src="/media/resource/img-logo.png" class="d-block w-100" alt="...">
-                    {% endif %}
+                    <div>
+                        {% if elem.img %}
+                            <img src="/media/{{elem.img}}" class="d-block w-100">
+                        {% else %}
+                            <img src="/media/resource/img-logo.png" class="d-block w-100">
+                        {% endif %}
+                    </div>
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{elem.title|truncatechars:40}}</h5>
                         <p>{{elem.description|truncatechars:150}}</p>
