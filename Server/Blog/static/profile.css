@@ -53,7 +53,7 @@ body {
     padding: 8px;
     border-radius: 8px;
     background-color: #44f;
-    color: #fff;
+    color: #fff !important;
     text-align: center;
 }
 

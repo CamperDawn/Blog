@@ -22,8 +22,8 @@ body {
     color: #aaa;
     padding: 0 10px;
 }
-span>a {
-    color: #44f;
+.author-linlk>a {
+    color: #44f !important;
 }
 
 .category {
@@ -34,6 +34,7 @@ span>a {
     padding: 8px;
     font-weight: 700;
     background-color: #0f0;
+    color: #44f !important;
     border-radius: 20px;
 }
 
@@ -97,6 +98,9 @@ span>a {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+.msj-login>a {
+    color: #44f !important;
 }
 
 .comment-item {

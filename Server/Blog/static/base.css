@@ -42,11 +42,11 @@ header.header{
     padding: 10px;
 }
 .contenedor-logo {
-    background-color: #fff;
     padding: 2px;
     display: flex;
 }
 .contenedor-logo>img {
+    background-color: #fff;
     width: 70px;
     height: 70px;
 }
@@ -183,7 +183,7 @@ i{
 }
 .fa-user{
     color: whitesmoke;
-    background: #1a2537;
+    background: #4c74b4;
     border-radius: 50%;
     border: none;
     cursor: pointer;
