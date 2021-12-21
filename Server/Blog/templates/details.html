@@ -13,7 +13,7 @@
             <h2 class="title-post">{{post.title}}</h2>
             <section class="meta-post">
                 <span>Publicado el {{post.post_date|date:"d/m/Y  H:i"}} hs</span>
-                <span>por <a href="/profile/{{post.user}}/">{{post.user}}</a></span>
+                <span class="author-link">por <a href="/profile/{{post.user}}/">{{post.user}}</a></span>
                 {% for categ in categories %}
                     {% ifequal post.category categ.value|conv %}
                         <span class="category"><a href="/search/?search_input=&category={{categ.value}}&type=3&order=1">{{categ.category}}</a></span>
