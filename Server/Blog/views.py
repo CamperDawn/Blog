@@ -331,3 +331,27 @@ def Config(request,user_name):
                 ctxLocal['incorrectEmail'] = True
             
     return render(request,'config.html',ctxLocal)
+
+def About(request):
+    ctxLocal = {}
+    ctxLocal['members'] = [
+        {'nro': 1,'name': 'Floridia Benitez Agustin Oscar' , 'img': 'resource/m1.jpeg' , 'github': 'https://github.com/agustinfloridia'},
+        {'nro': 2,'name': 'Palavecino Angelo' ,              'img': 'resource/m2.jpeg' , 'github': 'https://github.com/angelofrancescop'},
+        {'nro': 3,'name': 'Santini Domínguez Axel Martin' ,  'img': 'resource/m3.jpeg' , 'github': 'https://github.com/SantiniMartin'},
+        {'nro': 4,'name': 'Manfredi Ezequiel Luis' ,         'img': 'resource/m4.jpg' ,  'github': 'https://github.com/CamperDawn'},
+        {'nro': 5,'name': 'Escalante Daiana Ayelén' ,        'img': 'resource/m5.jpeg' , 'github': 'https://github.com/AyelenEscalante'},
+        {'nro': 6,'name': 'Arrúa Calcagno, Lucas Nahuel' ,   'img': 'resource/m6.jpeg' , 'github': 'https://github.com/LucasArrua'},
+    ]
+    ctxLocal['sketches'] = [
+        {'nro': 1, 'img': 'resource/s1.jpg'},
+        {'nro': 2, 'img': 'resource/s2.jpg'},
+        {'nro': 3, 'img': 'resource/s3.jpg'},
+        {'nro': 4, 'img': 'resource/s4.jpg'},
+        {'nro': 5, 'img': 'resource/s5.jpg'},
+        {'nro': 6, 'img': 'resource/s6.jpg'},
+    ] 
+    
+    if request.user.is_authenticated:
+        ctxLocal['image_user'] = imageUser(request.user)
+        
+    return render(request,'about.html',ctxLocal)

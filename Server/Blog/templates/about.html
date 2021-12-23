@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href={% static "about.css" %}>
+{% endblock css %}
+
+{% block body %}
+    <main>
+        <h1 class="title">Sobre nosotros y el Proyecto</h1>
+        <h3>INTEGRANTES:</h3>
+        <ul class="flex-container">
+            {% for member in members %}
+                <li class="item-member">
+                    <a class="container-img" href="{{member.github}}">
+                        <img class="m{{member.nro}}" src="/media/{{member.img}}">
+                    </a>
+                    <h4 class="container-name">{{member.name}}</h4>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>BOCETOS INICIALES:</h3>
+        <ul class="flex-container">
+            {% for sketch in sketches %}
+                <li class="item-sketch">
+                    <div class="sketch-img">
+                        <img class="s{{sketch.nro}}" src="/media/{{sketch.img}}">
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>BD INICIAL:</h3>
+        <ul class="flex-container">
+            <li>
+                <img class="bd-img" src="/media/resource/MER.jpeg">
+            </li>
+            <li>
+                <img class="bd-img" src="/media/resource/table.jpeg">
+            </li>
+        </ul>
+    </main>
+{% endblock body %}
